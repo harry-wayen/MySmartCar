@@ -1,0 +1,49 @@
+
+server_video：C视频服务器（mjpeg图片）
+client_video：QT视频客户端
+
+通信协议：
+client:发送“pic”
+server：回复“XXXXlen”（xxxx代表图片的数据量，单位为字节）
+client：根据接收到的数据量进行图片的循环接收，接收完毕，显示在客户端
+
+===================================================================================
+小车若不能控制前后左右，可以得到图像，需要检查一下短接帽（在透传端口旁边）是否安装
+
+小车IP：192.168.1.1
+小车控制端端口：2001
+小车视频端端口：8888
+
+小车控制命令：
+停止 FF 00 00 00 FF 
+前进 FF 00 01 00 FF
+后退 FF 00 02 00 FF
+左转 FF 00 03 00 FF
+右转 FF 00 04 00 FF
+可以参考如下格式保存命令
+static unsigned char cmd[5] = {0xff,0x00,0x01,0x00,0xff}; //up
+static unsigned char cmd[5] = {0xff,0x00,0x02,0x00,0xff}; //down
+static unsigned char cmd[5] = {0xff,0x00,0x03,0x00,0xff}; //left
+static unsigned char cmd[5] = {0xff,0x00,0x04,0x00,0xff}; //right
+static unsigned char cmd[5] = {0xff,0x00,0x00,0x00,0xff}; //stop
+
+
+波特率：9600 无校验 8位数据位 1位停止位
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
